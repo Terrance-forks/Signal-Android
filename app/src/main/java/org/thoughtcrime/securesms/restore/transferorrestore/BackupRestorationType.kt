@@ -11,5 +11,6 @@ package org.thoughtcrime.securesms.restore.transferorrestore
 enum class BackupRestorationType {
   DEVICE_TRANSFER,
   LOCAL_BACKUP,
+  FULL_EXPORT,
   NONE
 }

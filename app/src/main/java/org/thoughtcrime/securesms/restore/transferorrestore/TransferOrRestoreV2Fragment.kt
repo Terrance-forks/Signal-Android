@@ -10,6 +10,7 @@ import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.NavHostFragment
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.ImportExportFragment
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
@@ -32,6 +33,7 @@ class TransferOrRestoreV2Fragment : LoggingFragment(R.layout.fragment_transfer_r
     RegistrationViewDelegate.setDebugLogSubmitMultiTapView(binding.transferOrRestoreTitle)
     binding.transferOrRestoreFragmentTransfer.setOnClickListener { sharedViewModel.onTransferFromAndroidDeviceSelected() }
     binding.transferOrRestoreFragmentRestore.setOnClickListener { sharedViewModel.onRestoreFromLocalBackupSelected() }
+    binding.transferOrRestoreFragmentRestoreExport.setOnClickListener { sharedViewModel.onRestoreFromFullBackupSelected() }
     binding.transferOrRestoreFragmentNext.setOnClickListener { launchSelection(sharedViewModel.getBackupRestorationType()) }
 
     val description = getString(R.string.TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device)
@@ -49,6 +51,7 @@ class TransferOrRestoreV2Fragment : LoggingFragment(R.layout.fragment_transfer_r
   private fun updateSelection(restorationType: BackupRestorationType) {
     binding.transferOrRestoreFragmentTransferCard.isSelected = restorationType == BackupRestorationType.DEVICE_TRANSFER
     binding.transferOrRestoreFragmentRestoreCard.isSelected = restorationType == BackupRestorationType.LOCAL_BACKUP
+    binding.transferOrRestoreFragmentRestoreExportCard.isSelected = restorationType == BackupRestorationType.FULL_EXPORT
   }
 
   private fun launchSelection(restorationType: BackupRestorationType) {
@@ -58,6 +61,9 @@ class TransferOrRestoreV2Fragment : LoggingFragment(R.layout.fragment_transfer_r
       }
       BackupRestorationType.LOCAL_BACKUP -> {
         NavHostFragment.findNavController(this).safeNavigate(TransferOrRestoreV2FragmentDirections.actionTransferOrRestoreToLocalRestore())
+      }
+      BackupRestorationType.FULL_EXPORT -> {
+        ImportExportFragment().handleImportEncryptedBackup();
       }
       else -> {
         throw IllegalArgumentException()

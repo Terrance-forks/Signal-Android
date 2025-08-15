@@ -56,6 +56,12 @@ class RestoreViewModel : ViewModel() {
     }
   }
 
+  fun onRestoreFromFullBackupSelected() {
+    store.update {
+      it.copy(restorationType = BackupRestorationType.FULL_EXPORT)
+    }
+  }
+
   fun getBackupRestorationType(): BackupRestorationType {
     return store.value.restorationType
   }
