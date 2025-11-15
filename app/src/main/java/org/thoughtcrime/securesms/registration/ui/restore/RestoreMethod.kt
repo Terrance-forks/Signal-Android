@@ -26,6 +26,11 @@ enum class RestoreMethod(val iconRes: Int, val titleRes: Int, val subtitleRes: I
     titleRes = R.string.SelectRestoreMethodFragment__from_a_backup_folder,
     subtitleRes = R.string.SelectRestoreMethodFragment__choose_a_backup_youve_saved
   ),
+  FROM_FULL_BACKUP(
+    iconRes = R.drawable.symbol_folder_24,
+    titleRes = R.string.SelectRestoreMethodFragment__from_an_exported_full_backup,
+    subtitleRes = R.string.SelectRestoreMethodFragment__choose_an_encrypted_backup
+  ),
   FROM_OLD_DEVICE(
     iconRes = R.drawable.symbol_transfer_24,
     titleRes = R.string.SelectRestoreMethodFragment__from_your_old_phone,

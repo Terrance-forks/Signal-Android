@@ -8651,6 +8651,10 @@
     <string name="SelectRestoreMethodFragment__from_a_backup_file">From a backup file</string>
     <!-- Option subtitle for restoring via a local backup -->
     <string name="SelectRestoreMethodFragment__choose_a_backup_youve_saved">Choose a backup you’ve saved</string>
+    <!-- Option title for restoring via a full export file -->
+    <string name="SelectRestoreMethodFragment__from_an_exported_full_backup">From an exported full backup</string>
+    <!-- Option subtitle for restoring via a full export -->
+    <string name="SelectRestoreMethodFragment__choose_an_encrypted_backup">Choose an encrypted backup you’ve exported</string>
     <!-- Option title for restoring via device transfer -->
     <string name="SelectRestoreMethodFragment__from_your_old_phone">From your old phone</string>
     <!-- Option subtitle for restoring via device transfer -->

@@ -20,6 +20,7 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.signal.core.ui.compose.Dialogs
+import org.thoughtcrime.securesms.ImportExportFragment
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
@@ -78,7 +79,7 @@ class SelectRestoreMethodFragment : ComposeFragment() {
   private fun startRestoreMethod(method: RestoreMethod) {
     val apiRestoreMethod = when (method) {
       RestoreMethod.FROM_SIGNAL_BACKUPS -> ApiRestoreMethod.REMOTE_BACKUP
-      RestoreMethod.FROM_LOCAL_BACKUP_V1, RestoreMethod.FROM_LOCAL_BACKUP_V2 -> ApiRestoreMethod.LOCAL_BACKUP
+      RestoreMethod.FROM_LOCAL_BACKUP_V1, RestoreMethod.FROM_LOCAL_BACKUP_V2, RestoreMethod.FROM_FULL_BACKUP -> ApiRestoreMethod.LOCAL_BACKUP
       RestoreMethod.FROM_OLD_DEVICE -> ApiRestoreMethod.DEVICE_TRANSFER
     }
 
@@ -97,6 +98,7 @@ class SelectRestoreMethodFragment : ComposeFragment() {
       RestoreMethod.FROM_OLD_DEVICE -> findNavController().safeNavigate(SelectRestoreMethodFragmentDirections.goToDeviceTransfer())
       RestoreMethod.FROM_LOCAL_BACKUP_V1 -> findNavController().safeNavigate(SelectRestoreMethodFragmentDirections.goToLocalBackupRestore())
       RestoreMethod.FROM_LOCAL_BACKUP_V2 -> error("Not currently supported")
+      RestoreMethod.FROM_FULL_BACKUP -> ImportExportFragment().handleImportEncryptedBackup()
     }
   }
 }
